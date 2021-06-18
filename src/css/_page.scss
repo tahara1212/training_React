@@ -1,0 +1,87 @@
+button {
+    cursor: pointer;
+    border: none;
+    font-weight: 600;
+
+    &:hover {
+        transition: .5s;
+    }
+}
+
+.p-add {
+    margin-top: 40px;
+    text-align: center;
+
+    & input {
+        margin-right: 5px;
+        padding: 5px 10px;
+    }
+    & button {
+        padding: 5px 10px;
+        border: 1px solid black;
+        background-color: deeppink;
+        color: snow;
+
+        &:hover {
+            background-color: antiquewhite;
+            color: black;
+        }
+    }
+}
+
+.p-box {
+    background-color: salmon;
+    padding: 40px;
+    margin: 20px;
+    border-radius: 20px;
+    color: white;
+    font-weight: 600;
+
+    & p {
+        font-size: 20px;
+    }
+    & li {
+        font-size: 16px;
+    }
+
+    &__todo {
+        display: flex;
+        padding: 20px 40px;
+        border: 2px dotted;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    & button {
+        padding: 5px 20px;
+        border-radius: 5px;
+        line-height: 1;
+
+        &:first-of-type {
+            background-color: deeppink;
+            color: snow;
+            margin-right: 5px;
+            &:hover {
+                background-color: antiquewhite;
+                color: black;
+            }
+        }
+
+        &:last-of-type {
+            background-color: snow;
+            color: initial;
+            margin-right: 0;
+            &:hover {
+                background-color: black;
+                color: white;
+            }
+        }
+    }
+}
+
+.p-Complete {
+    background-color: slategray;
+}

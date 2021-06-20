@@ -1,42 +1,53 @@
 import React, { useState } from "react";
+import { InputTodos } from "./components/InputTodos"
+import { InCompleteTodo } from "./components/InCompleteTodo"
+import { CompleteTodo } from "./components/CompleteTodo"
 import "./css/style.css"
 
 export const App = () => {
+
+  const [todoText, setTodoText] = useState('');
+  const [inCompleteTodos, setInConmpleteTodos] = useState([]);
+  const [completeTodos, setCompleteTodos] = useState([]);
+
+  const onChangeTodoText = (event) => setTodoText(event.target.value);
+
+  const addTodo = () => {
+    if (todoText === "") return;
+    const newTodos = [...inCompleteTodos, todoText];
+    setInConmpleteTodos(newTodos);
+    setTodoText('');
+  }
+
+  const onClickDelete = (index) => {
+    const newTodos = [...inCompleteTodos];
+    newTodos.splice(index, 1);
+    setInConmpleteTodos(newTodos);
+  }
+
+  const onClickComplete = (index) => {
+    const newTodos = [...inCompleteTodos];
+    newTodos.splice(index, 1);
+    const newCompTodos = [...completeTodos, inCompleteTodos[index]];
+    setInConmpleteTodos(newTodos);
+    setCompleteTodos(newCompTodos);
+  }
+
+  const onClickBack = (index) => {
+    const newTodos = [...inCompleteTodos, completeTodos[index]];
+    
+    const newCompTodos = [...completeTodos];
+    newCompTodos.splice(index, 1);
+
+    setInConmpleteTodos(newTodos);
+    setCompleteTodos(newCompTodos);
+  }
+
   return (
     <>
-      <div class="p-add">
-        <input placeholder="TODOを入力" />
-        <button>追加</button>
-      </div>
-      <div class="p-box">
-        <p>未完了</p>
-        <ul>
-          <div class="p-box__todo">
-            <li>完了していないタスク</li>
-            <div>
-              <button>完了</button>
-              <button>削除</button>
-            </div>
-          </div>
-          <div class="p-box__todo">
-            <li>完了していないタスク</li>
-            <div>
-              <button>完了</button>
-              <button>削除</button>
-            </div>
-          </div>
-        </ul>
-      </div>
-      <div class="p-box p-Complete">
-        <p>達成</p>
-        <ul>
-          <div class="p-box__todo">
-            <li>完了したタスク</li>
-            <button>戻す</button>
-          </div>
-        </ul>
-      </div>
-      <div></div>
+      <InputTodos todoText={todoText} onChangeTodoText={onChangeTodoText} addTodo={addTodo} />
+      <InCompleteTodo inCompleteTodos={inCompleteTodos} onClickComplete={onClickComplete} onClickDelete={onClickDelete} />
+      <CompleteTodo completeTodos={completeTodos} onClickBack={onClickBack} />
     </>
   )
 }

@@ -1,53 +1,24 @@
-import React, { useState } from "react";
-import { InputTodos } from "./components/InputTodos"
-import { InCompleteTodo } from "./components/InCompleteTodo"
-import { CompleteTodo } from "./components/CompleteTodo"
-import "./css/style.css"
+import { useState } from "react";
+import { ChildArea } from "./components/ChildArea";
 
 export const App = () => {
 
-  const [todoText, setTodoText] = useState('');
-  const [inCompleteTodos, setInConmpleteTodos] = useState([]);
-  const [completeTodos, setCompleteTodos] = useState([]);
+    const [text, setText] = useState('');
+    const [open, setOpen] = useState('false');
 
-  const onChangeTodoText = (event) => setTodoText(event.target.value);
+    const onChangeText = (e) => setText(e.target.value);
 
-  const addTodo = () => {
-    if (todoText === "") return;
-    const newTodos = [...inCompleteTodos, todoText];
-    setInConmpleteTodos(newTodos);
-    setTodoText('');
-  }
+    const onClickOpen = () => setOpen(!open);
 
-  const onClickDelete = (index) => {
-    const newTodos = [...inCompleteTodos];
-    newTodos.splice(index, 1);
-    setInConmpleteTodos(newTodos);
-  }
-
-  const onClickComplete = (index) => {
-    const newTodos = [...inCompleteTodos];
-    newTodos.splice(index, 1);
-    const newCompTodos = [...completeTodos, inCompleteTodos[index]];
-    setInConmpleteTodos(newTodos);
-    setCompleteTodos(newCompTodos);
-  }
-
-  const onClickBack = (index) => {
-    const newTodos = [...inCompleteTodos, completeTodos[index]];
-    
-    const newCompTodos = [...completeTodos];
-    newCompTodos.splice(index, 1);
-
-    setInConmpleteTodos(newTodos);
-    setCompleteTodos(newCompTodos);
-  }
-
-  return (
-    <>
-      <InputTodos todoText={todoText} onChangeTodoText={onChangeTodoText} addTodo={addTodo} />
-      <InCompleteTodo inCompleteTodos={inCompleteTodos} onClickComplete={onClickComplete} onClickDelete={onClickDelete} />
-      <CompleteTodo completeTodos={completeTodos} onClickBack={onClickBack} />
-    </>
-  )
+    return (
+        <>
+            <div>
+                <input type="text" onChange={onChangeText} value={text} />
+                <br />
+                <br />
+                <button onClick={onClickOpen}>表示</button>
+                <ChildArea open={open} />
+            </div>
+        </>
+    )
 }

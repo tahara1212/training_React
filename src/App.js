@@ -1,24 +1,20 @@
-import { useState } from "react";
-import { ChildArea } from "./components/ChildArea";
+import { useCallback, useState } from "react";
+import { BrowserRouter, Link, Switch, Route } from "react-router-dom";
+import { Router } from "./router/Router";
+
 
 export const App = () => {
-
-    const [text, setText] = useState('');
-    const [open, setOpen] = useState('false');
-
-    const onChangeText = (e) => setText(e.target.value);
-
-    const onClickOpen = () => setOpen(!open);
-
     return (
-        <>
-            <div>
-                <input type="text" onChange={onChangeText} value={text} />
+        <BrowserRouter>
+            <div className="App">
+                <Link to="/">Home</Link>
                 <br />
+                <Link to="/page1">Page1</Link>
                 <br />
-                <button onClick={onClickOpen}>表示</button>
-                <ChildArea open={open} />
+                <Link to="/page2">Page2</Link>
             </div>
-        </>
+            <Router />
+            
+        </BrowserRouter>
     )
 }

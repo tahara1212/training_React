@@ -1,24 +1,25 @@
 import { memo } from "react";
 
 export const ChildArea = memo((props) => {
+    console.log("レンダリング");
 
-    const { open } = props;
+    const { open, onClickClose} = props;
 
     const style = {
-        with: "200px",
-        height: "200px",
-        backgroundColor: "blue",
-        color: "white"
+        with: "100%",
+        height: "500px",
+        backgroundColor:"khaki"
     }
 
-    const dataArr = [...Array(2000).keys()];
-    // console.log(dataArr);
-    dataArr.forEach(() => {
-        console.log("...");
-    });
     return (
         <>
-            {open && <div style={style}><p>yyyy</p></div>}
+            {open ? (
+                <div style={style}>
+                    <p>child components</p>
+                    <button onClick={onClickClose}>閉じる</button>
+                </div>
+            ): null}
+            
         </>
-    )
+    );
 });

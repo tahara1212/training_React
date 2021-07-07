@@ -1,5 +1,4 @@
-import { useCallback, useState } from "react";
-import { BrowserRouter, Link, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Link } from "react-router-dom";
 import { Router } from "./router/Router";
 
 

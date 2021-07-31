@@ -2,10 +2,12 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
 import styled from "@emotion/styled";
+import { memo } from "react";
 import { PrimaryButton } from "../atoms/button/PrimaryButton";
 import { Input } from "../atoms/input/Input";
 
-export const SearchInput = () => {
+export const SearchInput = memo(() => {
+       console.log("SearchInput");
        return (
               <SContainer>
                      <Input placeholder="検索条件を入力" />
@@ -14,7 +16,7 @@ export const SearchInput = () => {
                      </SButtonWrapper>
               </SContainer>
        )
-}
+})
 
 const SContainer = styled.div`
        display: flex;
